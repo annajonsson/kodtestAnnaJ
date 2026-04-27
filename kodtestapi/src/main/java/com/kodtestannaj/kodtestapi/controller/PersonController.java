@@ -20,8 +20,12 @@ public class PersonController {
     }
 
     @GetMapping("/data")
-    public List<Person> getAllPersons(@RequestParam(required = false) Long bookingId) {
-        return personService.getAllPersons();
+    public List<Person> getAllPersonsWithLimit(@RequestParam(required = false) String limit) {
+        if (limit == null) {
+            return personService.getAllPersons();
+
+        }
+        return personService.getLimitOfPersons(limit);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.kodtestannaj.kodtestapi.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -20,4 +21,17 @@ public class PersonService {
         return personRepository.findAllPersons();
     }
 
+    public List<Person> getLimitOfPersons(String limit) {
+        List<Person> limitedNumberOfPersons = new ArrayList<>();
+        List<Person> persons = getAllPersons();
+
+        for (Person person : persons) {
+            if (limitedNumberOfPersons.size() < Integer.parseInt(limit)) {
+
+                limitedNumberOfPersons.add(person);
+            }
+
+        }
+        return limitedNumberOfPersons;
+    }
 }
