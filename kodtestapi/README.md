@@ -8,7 +8,7 @@ This is my simple REST API built with spring boot and Java that reads data from 
 2. Start the project by typing:
 
 ```sh
-  mvn spring-boot:run
+  ./mvnw spring-boot:run
 ```
 
 in the terminal.

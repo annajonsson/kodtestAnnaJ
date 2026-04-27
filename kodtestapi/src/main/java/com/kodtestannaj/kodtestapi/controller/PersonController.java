@@ -20,6 +20,8 @@ public class PersonController {
 
     }
 
+    // limit is set to String and gets parsed in personService, so it could be
+    // checked as null or not for the Get-request
     @GetMapping("/api/data")
     public List<Person> getAllPersonsWithLimit(@RequestParam(required = false) String limit) {
 
@@ -27,7 +29,7 @@ public class PersonController {
 
             List<Person> persons = personService.getAllPersons();
             if (persons.isEmpty()) {
-                throw new NoContentException("The list of persons was empty");
+                throw new NoContentException("The list of persons was empty"); // Returns a 204 code if list is empty
             }
             return persons;
         }

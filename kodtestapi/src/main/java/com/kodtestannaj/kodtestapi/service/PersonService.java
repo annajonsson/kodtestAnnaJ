@@ -23,15 +23,18 @@ public class PersonService {
 
     }
 
+    // For applying limit to the result
     public List<Person> getLimitOfPersons(String limit) {
         List<Person> limitedNumberOfPersons = new ArrayList<>();
         List<Person> persons = getAllPersons();
         int parsedInt = Integer.parseInt(limit);
+
         if (parsedInt < 0) {
-            throw new BadRequestException("The limit number has to be a positive integer");
+            throw new BadRequestException("The limit number has to be a positive integer"); // Returns a 400 error code
+                                                                                            // with the bad request
         }
         for (Person person : persons) {
-            if (limitedNumberOfPersons.size() < Integer.parseInt(limit)) {
+            if (limitedNumberOfPersons.size() < parsedInt) {
 
                 limitedNumberOfPersons.add(person);
             }

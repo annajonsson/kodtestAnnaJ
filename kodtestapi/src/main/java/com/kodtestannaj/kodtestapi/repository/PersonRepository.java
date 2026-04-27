@@ -4,8 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.kodtestannaj.kodtestapi.csv.FileHandler;
-
+import com.kodtestannaj.kodtestapi.csvUtils.FileHandler;
 import com.kodtestannaj.kodtestapi.model.Person;
 
 @Repository
