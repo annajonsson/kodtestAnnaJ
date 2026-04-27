@@ -26,7 +26,7 @@ public class Person {
         return age;
     }
 
-    public String email() {
+    public String getEmail() {
         return email;
     }
 

@@ -2,6 +2,7 @@ package com.kodtestannaj.kodtestapi.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kodtestannaj.kodtestapi.exceptionhandler.NoContentException;
 import com.kodtestannaj.kodtestapi.model.Person;
 import com.kodtestannaj.kodtestapi.service.PersonService;
 
@@ -19,13 +20,23 @@ public class PersonController {
 
     }
 
-    @GetMapping("/data")
+    @GetMapping("/api/data")
     public List<Person> getAllPersonsWithLimit(@RequestParam(required = false) String limit) {
-        if (limit == null) {
-            return personService.getAllPersons();
 
+        if (limit == null) {
+
+            List<Person> persons = personService.getAllPersons();
+            if (persons.isEmpty()) {
+                throw new NoContentException("The list of persons was empty");
+            }
+            return persons;
         }
-        return personService.getLimitOfPersons(limit);
+
+        List<Person> persons = personService.getLimitOfPersons(limit);
+        if (persons.isEmpty()) {
+            throw new NoContentException("The list of persons was empty");
+        }
+        return persons;
     }
 
 }
